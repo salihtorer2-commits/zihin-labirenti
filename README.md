@@ -1,1 +1,1 @@
-# zihin-labirenti
+ .github/workflows/build.yml
