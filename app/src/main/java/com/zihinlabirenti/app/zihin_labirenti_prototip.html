@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#081426">
+<title>Zihin Labirenti</title>
+<style>
+:root{--bg:#071426;--panel:#10243b;--panel2:#142d47;--cyan:#38e0d0;--cyan2:#19b8b0;--text:#eff8ff;--muted:#9db2c8;--gold:#ffd36b;--red:#ff7585}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% -10%,#163b56 0,#071426 48%,#050d19 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;padding:20px 16px 34px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.brand{display:flex;gap:10px;align-items:center}.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),#147caa);display:grid;place-items:center;color:#041421;font-size:24px;font-weight:900;box-shadow:0 8px 24px #21cfc044}.brand b{display:block;font-size:17px;letter-spacing:.3px}.brand small{color:var(--muted)}.pill{background:#132b43;border:1px solid #28465f;border-radius:30px;padding:8px 12px;color:var(--gold);font-weight:700;font-size:13px}
+.hero{padding:22px;border-radius:24px;background:linear-gradient(145deg,#153650,#10233a 70%);border:1px solid #2a5269;box-shadow:0 16px 40px #0004;margin-bottom:18px}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}.hero h1{font-size:29px;line-height:1.1;margin:8px 0}.hero p{color:#b6c9da;margin:0 0 18px;font-size:14px;line-height:1.5}.stats{display:flex;gap:9px}.stat{flex:1;background:#07192b99;border-radius:14px;padding:10px}.stat strong{display:block;font-size:19px}.stat span{color:var(--muted);font-size:11px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}.section-title h2{font-size:16px;margin:0}.section-title span{font-size:12px;color:var(--muted)}
+.level-card,.game-card{background:linear-gradient(150deg,#122a43,#0d2035);border:1px solid #24445d;border-radius:20px;padding:17px;margin-bottom:12px}.level-head{display:flex;justify-content:space-between;align-items:center}.level-head b{font-size:15px}.tag{font-size:11px;padding:5px 9px;border-radius:20px;background:#173c4b;color:var(--cyan);font-weight:700}.progress{height:7px;background:#20384e;border-radius:9px;margin:13px 0 8px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan));border-radius:9px;width:0}
+button{border:0;font:inherit;cursor:pointer}.primary{width:100%;padding:15px;border-radius:15px;background:linear-gradient(90deg,#35d9cc,#23b8c2);color:#041925;font-weight:850;font-size:15px;box-shadow:0 8px 22px #19c6bd33}.secondary{padding:11px 14px;border-radius:12px;background:#1a354e;color:var(--text);border:1px solid #31516a;font-weight:650}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.category{background:#10263d;border:1px solid #24445d;border-radius:16px;padding:14px;text-align:left;color:var(--text)}.category .emoji{font-size:24px;display:block;margin-bottom:7px}.category small{color:var(--muted)}
+.screen{display:none}.screen.active{display:block}.back{background:none;color:var(--cyan);padding:5px 0;margin-bottom:14px;font-weight:700}.game-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.question{font-size:21px;line-height:1.3;margin:14px 0}.sub{color:var(--muted);font-size:13px}.visual{background:#091a2c;border:1px solid #25465f;border-radius:18px;padding:18px;margin:17px 0;text-align:center}.sequence{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.shape{width:58px;height:58px;border-radius:15px;background:#173a52;display:grid;place-items:center;font-size:30px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.answer{padding:14px 10px;border-radius:13px;background:#142e47;border:1px solid #31516a;color:var(--text);font-weight:750}.answer:active{transform:scale(.98)}.answer.correct{border-color:var(--cyan);background:#10433f}.answer.wrong{border-color:var(--red);background:#482535}.feedback{padding:13px;border-radius:13px;background:#122d43;color:#c5d8e8;font-size:13px;line-height:1.5;margin:12px 0;display:none}.feedback.show{display:block}.hint{color:var(--gold);font-size:13px;margin:8px 0}.footer-note{text-align:center;color:#728ba3;font-size:11px;margin-top:24px}
+@media(min-width:500px){.app{padding-top:28px}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="logo">Z</div><div><b>ZİHİN LABİRENTİ</b><small>Akıl • Mantık • Keşif</small></div></div>
+    <div class="pill">✦ <span id="topScore">0</span> puan</div>
+  </header>
+
+  <main id="home" class="screen active">
+    <section class="hero">
+      <div class="eyebrow">Zihnini çalıştır</div>
+      <h1>Her problem,<br>yeni bir keşif.</h1>
+      <p>Şekilleri çöz, bağlantıları keşfet ve seviyeni yükselt. Acele etme; düşün, dene, öğren.</p>
+      <div class="stats">
+        <div class="stat"><strong id="homeLevel">1</strong><span>Seviye</span></div>
+        <div class="stat"><strong id="homeSolved">0</strong><span>Çözülen</span></div>
+        <div class="stat"><strong id="homeStars">0</strong><span>Yıldız</span></div>
+      </div>
+    </section>
+
+    <div class="section-title"><h2>Yolculuğuna devam et</h2><span id="progressText">0 / 10</span></div>
+    <section class="level-card">
+      <div class="level-head"><b>🧩 İlk adım: Zihin antrenmanı</b><span class="tag">BAŞLANGIÇ</span></div>
+      <div class="progress"><i id="progressBar"></i></div>
+      <button class="primary" onclick="startGame()">OYUNA BAŞLA　→</button>
+    </section>
+
+    <div class="section-title"><h2>Bulmaca alanları</h2><span>5 tür</span></div>
+    <div class="grid">
+      <button class="category" onclick="startGame('Görsel')"><span class="emoji">🔷</span><b>Görsel zekâ</b><br><small>Şekil ve örüntüler</small></button>
+      <button class="category" onclick="startGame('Sayı')"><span class="emoji">🔢</span><b>Sayı ustası</b><br><small>Sayı dizileri</small></button>
+      <button class="category" onclick="startGame('Mantık')"><span class="emoji">🧠</span><b>Mantık</b><br><small>Akıl yürütme</small></button>
+      <button class="category" onclick="startGame('Problem')"><span class="emoji">🧭</span><b>Problem çözme</b><br><small>Doğru hamleyi bul</small></button>
+    </div>
+    <div class="footer-note">Bu sürüm çevrimdışı çalışır. İlerleme bu cihazda saklanır.</div>
+  </main>
+
+  <main id="play" class="screen">
+    <button class="back" onclick="goHome()">← Ana menü</button>
+    <div class="game-top"><span class="tag" id="categoryTag">GÖRSEL ZEKA</span><span class="pill">Soru <b id="qNumber">1</b>/10</span></div>
+    <div class="progress"><i id="gameProgress"></i></div>
+    <div class="sub" id="difficulty">BAŞLANGIÇ • KOLAY</div>
+    <h2 class="question" id="question">Sıradaki şekil hangisi?</h2>
+    <div class="visual" id="visual"></div>
+    <div class="answers" id="answers"></div>
+    <div class="hint" id="hint"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="primary" id="nextBtn" style="display:none" onclick="nextQuestion()">SONRAKİ SORU　→</button>
+  </main>
+
+  <main id="finish" class="screen">
+    <section class="hero" style="text-align:center;margin-top:28px">
+      <div style="font-size:54px">🏆</div>
+      <div class="eyebrow">Bölüm tamamlandı</div>
+      <h1 id="finishTitle">Harika iş!</h1>
+      <p id="finishText">İlk adımını tamamladın.</p>
+      <div class="stats">
+        <div class="stat"><strong id="earned">0</strong><span>Kazanılan puan</span></div>
+        <div class="stat"><strong id="correctCount">0/10</strong><span>Doğru cevap</span></div>
+        <div class="stat"><strong id="earnedStars">0</strong><span>Yıldız</span></div>
+      </div>
+    </section>
+    <button class="primary" onclick="startGame()">YENİDEN OYNA　↻</button>
+    <button class="secondary" style="width:100%;margin-top:10px" onclick="goHome()">Ana menüye dön</button>
+  </main>
+</div>
+<script>
+const questions = [
+ {cat:"Görsel",diff:"Kolay",q:"Sıradaki şekil hangisi olmalı?",visual:'<div class="sequence"><div class="shape">🔴</div><div class="shape">🔵</div><div class="shape">🔴</div><div class="shape">🔵</div><div class="shape">🔴</div><div class="shape">❔</div></div>',a:["🔴 Kırmızı","🔵 Mavi","🟢 Yeşil","🟡 Sarı"],correct:1,why:"Renkler kırmızı ve mavi olarak sırayla tekrar ediyor. Kırmızıdan sonra mavi gelir.",hint:"İki renge dikkat et; aynı sıra tekrar ediyor."},
+ {cat:"Sayı",diff:"Kolay",q:"Sayı dizisindeki eksik sayı kaçtır?",visual:'<div class="sequence"><div class="shape">2</div><div class="shape">4</div><div class="shape">6</div><div class="shape">8</div><div class="shape">?</div></div>',a:["9","10","11","12"],correct:1,why:"Her adımda sayıya 2 ekleniyor: 2, 4, 6, 8, 10.",hint:"Ardışık sayılar arasındaki farka bak."},
+ {cat:"Mantık",diff:"Kolay",q:"Bir yarışta ikinci sıradaki kişiyi geçtin. Kaçıncı sıradasın?",visual:'<div style="font-size:48px">🏃‍♂️　🏃‍♀️　🏃</div><p class="sub">Yarışta öndeki kişileri düşün.</p>',a:["Birinci","İkinci","Üçüncü","Dördüncü"],correct:1,why:"İkinci sıradaki kişiyi geçersen onun yerini alırsın. Yani ikinci olursun.",hint:"Geçtiğin kişinin sırasını alırsın."},
+ {cat:"Problem",diff:"Kolay",q:"Bir odada 3 lamba, dışarıda 3 düğme var. Hangi düğmenin hangi lambayı yaktığını tek seferde nasıl anlarsın?",visual:'<div style="font-size:42px">🔘　🔘　🔘<br>　💡　💡　💡</div>',a:["Üçünü de açarım","Birini açıp beklerim, kapatıp diğerini açarım","Rastgele basarım","Anlamak mümkün değil"],correct:1,why:"Bir lambayı bir süre yakıp kapatırsın, ikinciyi açık bırakırsın. Odaya girdiğinde yanan, sıcak ama sönük ve soğuk lambaları ayırt edebilirsin.",hint:"Lambalar sadece ışık vermez; ısı da üretir."},
+ {cat:"Sayı",diff:"Orta",q:"Kuralı bul: 3, 6, 12, 24, ?",visual:'<div class="sequence"><div class="shape">3</div><div class="shape">6</div><div class="shape">12</div><div class="shape">24</div><div class="shape">?</div></div>',a:["30","36","42","48"],correct:3,why:"Her sayı bir öncekinin 2 katı. 24 × 2 = 48.",hint:"Toplama yerine çarpma ilişkisini dene."},
+ {cat:"Görsel",diff:"Orta",q:"Döngüde soru işaretinin yerine hangi şekil gelmeli?",visual:'<div class="sequence"><div class="shape">▲</div><div class="shape">■</div><div class="shape">●</div><div class="shape">▲</div><div class="shape">■</div><div class="shape">?</div></div>',a:["▲ Üçgen","■ Kare","● Daire","◆ Baklava"],correct:2,why:"Üç şekil aynı sırayla tekrar ediyor: üçgen, kare, daire.",hint:"İlk üç şeklin sırasını takip et."},
+ {cat:"Mantık",diff:"Orta",q:"Ali'nin 4 kız kardeşi var. Her kız kardeşinin bir erkek kardeşi var. Ailede kaç çocuk var?",visual:'<div style="font-size:48px">👦　👧　👧　👧　👧</div>',a:["5","8","9","10"],correct:0,why:"Dört kız kardeşin hepsinin erkek kardeşi aynı Ali'dir. Toplam 5 çocuk vardır.",hint:"Her kardeş için ayrı bir erkek çocuk düşünme."},
+ {cat:"Problem",diff:"Orta",q:"Bir çiftçi nehrin karşısına kurt, keçi ve lahanayı geçirecek. Kayıkta çiftçiden başka yalnızca biri taşınabiliyor. Keçi yalnız kalırsa lahanayı, kurt yalnız kalırsa keçiyi yer. İlk neyi geçirirsin?",visual:'<div style="font-size:42px">🐺　🐐　🥬<br>〰️〰️〰️</div>',a:["Kurt","Keçi","Lahana","Hepsini"],correct:1,why:"Önce keçiyi geçirirsin. Çünkü kurt lahana ile kalabilir; keçi ise ikisinden biriyle yalnız bırakılamaz.",hint:"İki tarafı da güvenli bırakacak ilk hamleyi düşün."},
+ {cat:"Sayı",diff:"Zor",q:"Bir sayı düşün. 3 ile çarp, 6 ekle, sonucu 3'e böl ve ilk düşündüğün sayıyı çıkar. Sonuç kaçtır?",visual:'<div style="font-size:42px">❓ × 3 → +6 → ÷3 → − ilk sayı</div>',a:["0","1","2","3"],correct:2,why:"Sayı x olsun: (3x + 6) / 3 − x = x + 2 − x = 2.",hint:"İlk sayıya x de ve işlemleri sırayla yaz."},
+ {cat:"Mantık",diff:"Zor",q:"Bir doktor sana 3 hap veriyor ve her yarım saatte bir hap almanı söylüyor. Hapların tamamını kaç saatte bitirirsin?",visual:'<div style="font-size:46px">💊　💊　💊</div>',a:["30 dakika","1 saat","1,5 saat","2 saat"],correct:1,why:"İlk hapı hemen alırsın. İkinciyi 30 dakika sonra, üçüncüyü 60 dakika sonra alırsın. Toplam süre 1 saattir.",hint:"İlk hapı almak için yarım saat beklemen gerekmiyor."}
+];
+let index=0, score=0, correct=0, runScore=0, selectedFilter=null, answered=false;
+let saved=JSON.parse(localStorage.getItem("zl-progress")||'{"score":0,"solved":0,"stars":0,"level":1}');
+function persist(){localStorage.setItem("zl-progress",JSON.stringify(saved));updateHome()}
+function updateHome(){document.getElementById("topScore").textContent=saved.score;document.getElementById("homeLevel").textContent=saved.level;document.getElementById("homeSolved").textContent=saved.solved;document.getElementById("homeStars").textContent=saved.stars;document.getElementById("progressText").textContent=Math.min(saved.solved,10)+" / 10";document.getElementById("progressBar").style.width=Math.min(saved.solved,10)*10+"%"}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function goHome(){show("home");updateHome()}
+function startGame(filter=null){selectedFilter=filter;let pool=questions.map((q,i)=>({...q,original:i}));if(filter)pool=pool.filter(q=>q.cat===filter);window.currentQuestions=pool.length>=5?pool:questions;index=0;correct=0;runScore=0;show("play");renderQuestion()}
+function renderQuestion(){answered=false;const q=window.currentQuestions[index];document.getElementById("categoryTag").textContent=q.cat.toLocaleUpperCase("tr-TR");document.getElementById("qNumber").textContent=index+1;document.getElementById("gameProgress").style.width=(index/window.currentQuestions.length*100)+"%";document.getElementById("difficulty").textContent="ZİHİN ANTRENMANI • "+q.diff.toLocaleUpperCase("tr-TR");document.getElementById("question").textContent=q.q;document.getElementById("visual").innerHTML=q.visual;document.getElementById("hint").textContent="";document.getElementById("feedback").className="feedback";document.getElementById("nextBtn").style.display="none";const a=document.getElementById("answers");a.innerHTML="";q.a.forEach((v,i)=>{let b=document.createElement("button");b.className="answer";b.textContent=v;b.onclick=()=>choose(i,b);a.appendChild(b)});let hint=document.createElement("button");hint.className="secondary";hint.textContent="💡 İpucu";hint.style.gridColumn="1 / -1";hint.onclick=()=>document.getElementById("hint").textContent="İpucu: "+q.hint;a.appendChild(hint)}
+function choose(n,btn){if(answered)return;answered=true;const q=window.currentQuestions[index];const buttons=[...document.querySelectorAll(".answer")];buttons.forEach((b,i)=>{b.disabled=true;if(i===q.correct)b.classList.add("correct")});let fb=document.getElementById("feedback");if(n===q.correct){correct++;runScore+=10;fb.innerHTML="<b style='color:var(--cyan)'>✓ Doğru cevap! +10 puan</b><br>"+q.why}else{btn.classList.add("wrong");fb.innerHTML="<b style='color:var(--gold)'>Bir dahaki sefere!</b><br>"+q.why}fb.classList.add("show");document.getElementById("nextBtn").style.display="block";document.getElementById("nextBtn").textContent=index===window.currentQuestions.length-1?"SONUÇLARI GÖR　→":"SONRAKİ SORU　→"}
+function nextQuestion(){if(index<window.currentQuestions.length-1){index++;renderQuestion()}else finishGame()}
+function finishGame(){const stars=correct>=8?3:correct>=5?2:correct>=3?1:0;saved.score+=runScore;saved.solved+=correct;saved.stars+=stars;saved.level=Math.max(saved.level,Math.floor(saved.solved/5)+1);persist();document.getElementById("earned").textContent=runScore;document.getElementById("correctCount").textContent=correct+"/"+window.currentQuestions.length;document.getElementById("earnedStars").textContent="★".repeat(stars)||"0";document.getElementById("finishTitle").textContent=correct>=8?"Mükemmel!":correct>=5?"Güzel ilerleme!":"Denemeye devam!";document.getElementById("finishText").textContent=window.currentQuestions.length+" sorudan "+correct+" tanesini doğru çözdün. Her deneme zihnini güçlendirir.";show("finish")}
+updateHome();
+</script>
+</body></html>
